@@ -22,55 +22,97 @@ Take a look inside your dataset
 ### Variation
 
 Perform an analysis of the variation in the "neighbourhood" column. 
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans: 
+
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
 
 Perform an analysis of the variation in the "room_type" column. 
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans:
 
-Perform an analysis of the variation in the "price" column. Make sure to explore different "binwidths" in your analysis.
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
+
+Perform an analysis of the variation in the "price" column. Make sure to explore different "binwidth" values in your analysis.
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans:
 
-Perform an analysis of the variation in the "minimum_nights" column. Make sure to explore different "binwidths" in your analysis.
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
+
+Perform an analysis of the variation in the "minimum_nights" column. Make sure to explore different "binwidth" values in your analysis.
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans:
 
-Perform an analysis of the variation in the "number_of_reviews" column. Make sure to explore different "binwidths" in your analysis.
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
+
+Perform an analysis of the variation in the "number_of_reviews" column. Make sure to explore different "binwidth" values in your analysis.
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans:
 
-Perform an analysis of the variation in the "availability_365" column. Make sure to explore different "binwidths" in your analysis.
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
+
+Perform an analysis of the variation in the "availability_365" column. Make sure to explore different "binwidth" values in your analysis.
+
 ```{r}
 
 ```
 
-What are your conclusions?
+* Which values are the most common? Why?
 
-> ans:
+
+* Which values are rare? Why? Does that match your expectations?
+
+
+* Can you see any unusual patterns? What might explain them?
+
+
