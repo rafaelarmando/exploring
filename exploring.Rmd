@@ -1,0 +1,76 @@
+---
+title: "exploring"
+author: "Rafael Contreras"
+date: "10/29/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load the necessary libraries
+```{r}
+
+```
+
+Take a look inside your dataset
+```{r}
+
+```
+
+### Variation
+
+Perform an analysis of the variation in the "neighbourhood" column. 
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans: 
+
+Perform an analysis of the variation in the "room_type" column. 
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans:
+
+Perform an analysis of the variation in the "price" column. Make sure to explore different "binwidths" in your analysis.
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans:
+
+Perform an analysis of the variation in the "minimum_nights" column. Make sure to explore different "binwidths" in your analysis.
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans:
+
+Perform an analysis of the variation in the "number_of_reviews" column. Make sure to explore different "binwidths" in your analysis.
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans:
+
+Perform an analysis of the variation in the "availability_365" column. Make sure to explore different "binwidths" in your analysis.
+```{r}
+
+```
+
+What are your conclusions?
+
+> ans:
