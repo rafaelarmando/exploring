@@ -22,5 +22,7 @@ Visit a real estate website (such as realtor.com) and find a property that is fo
 
 * Use your dataset to find what the average Airbnb price/night is in the neighborhood you selected.
 * Use your dataset to find what the average number of available nights per year is for an Airbnb in the neighborhood you selected.
+* Suppose you bought the property you selected above. If you were to rent it as an Airbnb at the average neighborhood price, for the average number of days, how long will it take you to break even?
+
 
 
