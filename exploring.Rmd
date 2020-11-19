@@ -1,22 +1,16 @@
 ---
-title: "exploring"
-author: "NAME"
-date: "DATE"
-output: github_document
+output:
+  pdf_document: default
+  html_document: default
 ---
+# Part I
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+Load the necessary libraries and datasets
+```{r include = FALSE}
+library(tidyverse)
+library(readr)
 
-Load the necessary libraries
-```{r}
-
-```
-
-Take a look inside your dataset
-```{r}
-
+listings <- read_csv("listings.csv")
 ```
 
 ### Variation
@@ -24,7 +18,11 @@ Take a look inside your dataset
 Perform an analysis of the variation in the "neighbourhood" column. 
 
 ```{r}
+ggplot(data = listings) + geom_bar(mapping = aes(x = neighbourhood))
 
+listings %>%
+  count(neighbourhood) %>%
+  arrange(desc(n))
 ```
 
 * Which values are the most common? Why?
@@ -36,11 +34,14 @@ Perform an analysis of the variation in the "neighbourhood" column.
 * Can you see any unusual patterns? What might explain them?
 
 
-
 Perform an analysis of the variation in the "room_type" column. 
 
 ```{r}
+ggplot(listings) + geom_bar(mapping = aes(x = room_type))
 
+listings %>%
+  count(room_type) %>%
+  arrange(desc(n))
 ```
 
 * Which values are the most common? Why?
@@ -56,7 +57,19 @@ Perform an analysis of the variation in the "room_type" column.
 Perform an analysis of the variation in the "price" column. Make sure to explore different "binwidth" values in your analysis.
 
 ```{r}
+ggplot(listings) + geom_histogram(mapping = aes(x = price), binwidth = 25)
 
+#zoomed-in
+ggplot(listings) + geom_histogram(mapping = aes(x = price), binwidth = 25) + 
+  coord_cartesian(xlim = c(0, 1000))
+
+listings %>%
+  count(price) %>%
+  arrange(desc(n))
+
+listings %>%
+  count(price) %>%
+  arrange(desc(price))
 ```
 
 * Which values are the most common? Why?
@@ -66,13 +79,24 @@ Perform an analysis of the variation in the "price" column. Make sure to explore
 
 
 * Can you see any unusual patterns? What might explain them?
-
 
 
 Perform an analysis of the variation in the "minimum_nights" column. Make sure to explore different "binwidth" values in your analysis.
 
 ```{r}
+ggplot(listings) + geom_histogram(mapping = aes(x = minimum_nights), binwidth = 1)
 
+#zoomed-in
+ggplot(listings) + geom_histogram(mapping = aes(x = minimum_nights), binwidth = 1) + 
+  coord_cartesian(xlim = c(0, 100))
+
+listings %>%
+  count(minimum_nights) %>%
+  arrange(desc(n))
+
+listings %>%
+  count(minimum_nights) %>%
+  arrange(desc(minimum_nights))
 ```
 
 * Which values are the most common? Why?
@@ -82,13 +106,28 @@ Perform an analysis of the variation in the "minimum_nights" column. Make sure t
 
 
 * Can you see any unusual patterns? What might explain them?
-
 
 
 Perform an analysis of the variation in the "number_of_reviews" column. Make sure to explore different "binwidth" values in your analysis.
 
 ```{r}
+ggplot(listings) + geom_histogram(mapping = aes(x = number_of_reviews), binwidth = 1)
 
+#zoomed-in x axis
+ggplot(listings) + geom_histogram(mapping = aes(x = number_of_reviews), binwidth = 1) + 
+  coord_cartesian(xlim = c(0, 350))
+
+#zoomed-in x and y axis
+ggplot(listings) + geom_histogram(mapping = aes(x = number_of_reviews), binwidth = 1) + 
+  coord_cartesian(xlim = c(0, 350), ylim = c(0, 500))
+
+listings %>%
+  count(number_of_reviews) %>%
+  arrange(desc(n))
+
+listings %>%
+  count(number_of_reviews) %>%
+  arrange(desc(number_of_reviews))
 ```
 
 * Which values are the most common? Why?
@@ -98,13 +137,24 @@ Perform an analysis of the variation in the "number_of_reviews" column. Make sur
 
 
 * Can you see any unusual patterns? What might explain them?
-
 
 
 Perform an analysis of the variation in the "availability_365" column. Make sure to explore different "binwidth" values in your analysis.
 
 ```{r}
+ggplot(listings) + geom_histogram(mapping = aes(x = availability_365), binwidth = 1)
 
+#zoomed-in x axis
+ggplot(listings) + geom_histogram(mapping = aes(x = availability_365), binwidth = 1) + 
+  coord_cartesian(ylim = c(0, 500))
+
+listings %>%
+  count(availability_365) %>%
+  arrange(desc(n))
+
+listings %>%
+  count(availability_365) %>%
+  arrange(desc(availability_365))
 ```
 
 * Which values are the most common? Why?
@@ -114,5 +164,97 @@ Perform an analysis of the variation in the "availability_365" column. Make sure
 
 
 * Can you see any unusual patterns? What might explain them?
+
+
+# Part II
+
+Use your dataset to answer the following questions:
+
+* What seems to be the most common name (of a person) in the city you selected?
+
+```{r}
+listings %>%
+  count(host_name) %>%
+  arrange(desc(n))
+```
+
+* Do the number of reviews affect the price of the Airbnb? How? Why do you think this happens?
+
+```{r}
+#accounting for all values
+ggplot(data = listings, mapping = aes(x = number_of_reviews, y = price)) + geom_point() + geom_smooth(se = FALSE) + coord_cartesian(ylim = c(0, 3000))
+
+#not accounting for expensive places
+under_one_thousand <- listings %>%
+  filter(price < 1000)
+
+  ggplot(data = under_one_thousand, mapping = aes(x = number_of_reviews, y = price)) + geom_point() + geom_smooth(se = FALSE)
+```
+
+* What type of room tends to have the highest Airbnb price?
+
+```{r}
+ggplot(data = listings) +
+  geom_boxplot(mapping = aes(x = reorder(room_type, price, FUN = median), y = price))
+
+ggplot(data = under_one_thousand) +
+  geom_boxplot(mapping = aes(x = reorder(room_type, price, FUN = median), y = price))
+```
+
+```{r}
+ggplot(data = listings) +
+  geom_boxplot(mapping = aes(x = reorder(room_type, number_of_reviews, FUN = median), y = number_of_reviews))
+
+ggplot(data = under_one_thousand) +
+  geom_boxplot(mapping = aes(x = reorder(room_type, number_of_reviews, FUN = median), y = number_of_reviews))
+```
+
+* What neighborhood(s) tend to have the highest Airbnb price?
+
+```{r}
+ggplot(data = listings) +
+  geom_boxplot(mapping = aes(x = reorder(neighbourhood, price, FUN = median), y = price)) + coord_flip()
+
+by_neighborhood <- group_by(listings, neighbourhood) %>%
+  summarize(avg_price = mean(price)) %>%
+  arrange(desc(avg_price))
+
+by_neighborhood
+```
+
+* Suppose you could purchase a property in the city you selected, and that you could rent it to others as an Airbnb. In what neighborhood would you want to purchase your property? Why?
+
+78732
+
+# Part III
+
+* Visit a real estate website (such as realtor.com) and find a property that is for sale in the neighborhood you selected. Take note of the price and address of the property.
+
+
+* Use your dataset to find what the average Airbnb price/night is in the neighborhood you selected.
+
+```{r}
+by_neighborhood <- group_by(listings, neighbourhood) %>%
+  summarize(avg_price = mean(price)) %>%
+  arrange(desc(avg_price))
+  
+by_neighborhood
+```
+
+* Use your dataset to find what the average number of available nights per year is for an Airbnb in the neighborhood you selected.
+
+```{r}
+by_neighborhood <- group_by(listings, neighbourhood) %>%
+  summarize(avg_availability = mean(availability_365)) %>%
+  arrange(desc(avg_availability))
+  
+by_neighborhood
+```
+
+* Suppose you bought the property you selected above. If you were to rent it as an Airbnb at the average neighborhood price, for the average number of days, how long will it take you to break even?
+
+```{r}
+
+```
 
 
