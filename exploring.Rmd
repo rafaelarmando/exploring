@@ -3,7 +3,9 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Part I
+# Wrangling
+
+## Part I
 
 Load the necessary libraries and datasets
 ```{r include = FALSE}
@@ -166,7 +168,7 @@ listings %>%
 * Can you see any unusual patterns? What might explain them?
 
 
-# Part II
+## Part II
 
 Use your dataset to answer the following questions:
 
@@ -226,7 +228,7 @@ by_neighborhood
 
 78732
 
-# Part III
+## Part III
 
 * Visit a real estate website (such as realtor.com) and find a property that is for sale in the neighborhood you selected. Take note of the price and address of the property.
 
